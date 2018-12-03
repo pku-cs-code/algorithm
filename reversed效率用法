@@ -1,0 +1,91 @@
+https://stackoverflow.com/questions/3705670/best-way-to-create-a-reversed-list-in-python
+
+以下为我的实测结果，与stackfolow上的不一致。stackflow上说的是[::-1]时间最短，实际上在我的mac上与reversed相比还差一点点。
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = list(reversed(ol))"
+1000000 loops, best of 3: 1.02 usec per loop
+
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = reversed(ol)"
+1000000 loops, best of 3: 0.231 usec per loop
+192:algorithm zhangcai$
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = reversed(ol)"
+1000000 loops, best of 3: 0.231 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = reversed(ol)"
+1000000 loops, best of 3: 0.228 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = reversed(ol)"
+1000000 loops, best of 3: 0.229 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = reversed(ol)"
+1000000 loops, best of 3: 0.23 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol[::-1]"
+1000000 loops, best of 3: 0.263 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol[::-1]"
+1000000 loops, best of 3: 0.262 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol[::-1]"
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol;nl.reverse()"
+10000000 loops, best of 3: 0.151 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol;nl.reverse()"
+10000000 loops, best of 3: 0.151 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol;nl.reverse()"
+10000000 loops, best of 3: 0.152 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol;nl.reverse()"
+10000000 loops, best of 3: 0.152 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = ol[::-1]"
+1000000 loops, best of 3: 0.259 usec per loop
+192:algorithm zhangcai$ python -m timeit "ol = [1, 2, 3]; nl = reversed(ol)"
+1000000 loops, best of 3: 0.23 usec per loop
+
+
+
+
+
+$ p -m timeit "ol = [1, 2, 3]; nl = list(reversed(ol))"
+100000 loops, best of 3: 2.34 usec per loop
+
+$ p -m timeit "ol = [1, 2, 3]; nl = list(ol); nl.reverse();"
+1000000 loops, best of 3: 0.686 usec per loop
+
+$ p -m timeit "ol = [1, 2, 3]; nl = ol[::-1];"
+1000000 loops, best of 3: 0.569 usec per loop
+
+$ p -m timeit "ol = [1, 2, 3]; nl = [i for i in reversed(ol)];"
+1000000 loops, best of 3: 1.48 usec per loop
+
+
+$ p -m timeit "ol = [1, 2, 3]*1000; nl = list(reversed(ol))"
+10000 loops, best of 3: 44.7 usec per loop
+
+$ p -m timeit "ol = [1, 2, 3]*1000; nl = list(ol); nl.reverse();"
+10000 loops, best of 3: 27.2 usec per loop
+
+$ p -m timeit "ol = [1, 2, 3]*1000; nl = ol[::-1];"
+10000 loops, best of 3: 24.3 usec per loop
+
+$ p -m timeit "ol = [1, 2, 3]*1000; nl = [i for i in reversed(ol)];"
+10000 loops, best of 3: 155 usec per loop
+
+
+reversed(lst) -- 11.2 usecs
+
+list(reversed(lst)) -- 37.1 usecs
+
+lst[::-1] -- 23.6 usecs
+
+另附：
+https://ask.helplib.com/python/post_1306420
+
+import timeit
+setup = """
+import random
+random.seed(1)
+l = range(10000)
+random.shuffle(l)
+"""
+run1 = """
+sorted(l)
+"""
+run2 = """
+sorted(l, reverse=True)
+"""
+n1 = timeit.timeit(run1, setup, number=10000)
+n2 = timeit.timeit(run2, setup, number=10000)
+print n1, n2
+print (n2/n1 - 1)*100,"%"

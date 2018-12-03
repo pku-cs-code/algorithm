@@ -1,0 +1,7 @@
+ref blog:
+https://blog.csdn.net/huludan/article/details/43935873
+
+time.localtime()，localtime返回的是struct_time，包含年月日，显然没有必要，更重要的是localtime()的精度依赖于time()
+time.time()，time返回的是UTC时间（seconds since the 00:00:00 UTC on January 1）。在很多系统，包括windows下精度很差，win32下的精度只有1/18.2秒。不过在Unix/Linux系统下，time()的精度还是很高的。
+Python的标准库手册推荐在任何系统下都尽量使用time.clock()。不过要注意是在win32系统下，这个函数返回的是真实时间（wall time），而在Unix/Linux下返回的是CPU时间。在win32下，这个函数的时间分辨率好于1微秒。
+

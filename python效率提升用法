@@ -1,0 +1,8 @@
+ref blog:
+http://python.jobbole.com/85025/
+
+
+>>> from collections import OrderedDict
+>>> sorted_d = OrderedDict(sorted(d.items(), key=lambda x: x[1]))
+>>> sorted_d
+OrderedDict([(3, 'x'), (2, 'y'), (1, 'z')])

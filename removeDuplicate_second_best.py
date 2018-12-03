@@ -24,4 +24,3 @@ class Solution:
                     nums[pre]=nums[cur]
                     cur += 1
             return pre + 1
-        

@@ -1,0 +1,17 @@
+reference docs:
+https://docs.python.org/3/library/random.html
+
+released on mygithub:
+https://github.com/pku-cs-code/algorithm.git
+
+content:
+
+random.randrange(start, stop[, step])
+Return a randomly selected element from range(start, stop, step). This is equivalent to choice(range(start, stop, step)), but doesn’t actually build a range object.
+返回一个随机选择的元素。这和choice(range(start, stop, step)等价，但是实际上不是一个range对象。
+
+延伸：random.choice(arg)，后面的arg可以是列表或者字符，返回列表或者字符中的一个随机元素。
+
+random.randint(a, b)
+Return a random integer N such that a <= N <= b. Alias for randrange(a, b+1).
+返回一个随机的证书N，这个N的取值范围为a <= N <= b。和randrange(a, b+1)等价。
