@@ -1,0 +1,2 @@
+{}.fromkeys(('love', 'honor'), True)
+

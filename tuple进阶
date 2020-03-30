@@ -1,0 +1,38 @@
+In [21]: t=(1)
+
+In [22]: t
+Out[22]: 1
+
+In [23]: type(t)
+Out[23]: int
+
+In [24]: t=(1,)
+
+In [25]: type(t)
+Out[25]: tuple
+
+In [29]: zip([1,2],[3,4])
+Out[29]: <zip at 0x10a013488>
+
+In [30]: ret=zip([1,2],[3,4])
+
+In [31]: ret
+Out[31]: <zip at 0x10a0133c8>
+
+In [32]: nv=dict(ret)
+
+In [33]: nv
+Out[33]: {1: 3, 2: 4}
+
+In [34]: ret2=zip([1,2],[3,4,5])
+
+In [35]: dict(ret2)
+Out[35]: {1: 3, 2: 4}
+
+In [36]: ret2=zip([1,2,6],[3,4,])
+
+In [37]: dict(ret2)
+Out[37]: {1: 3, 2: 4}
+
+zip(iter1,iter2)
+zip后面接

@@ -1,0 +1,6 @@
+ref blog:
+https://blog.csdn.net/zhaofrjx/article/details/47998477
+
+
+set.discard 和 set.remove不同在于如果删除的元素不在集合内，discard不报错，remove 报错
+
